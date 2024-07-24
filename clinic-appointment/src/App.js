@@ -1,7 +1,29 @@
+import React, { useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.async = true;
+    script.defer = true;
+    script.type = 'text/javascript';
+    script.src = 'https://app.engati.com/static/js/widget.js?config=' + JSON.stringify({
+      bot_key: "a78d6e306b904e13",
+      welcome_msg: true,
+      branding_key: "default",
+      server: "https://app.engati.com",
+      e: "p"
+    });
+
+    document.head.appendChild(script);
+
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
